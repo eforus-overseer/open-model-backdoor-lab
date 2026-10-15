@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from . import __version__
+from .experiments import sweep, compare, write_analysis
 from .evaluation import Observation
 from .reporting import make_report, write_report
 from .toy import MARKER, dataset
@@ -36,11 +37,30 @@ def main(argv=None):
     evaluate.add_argument("--marker", required=True)
     evaluate.add_argument("--labels", type=Path, help="optional independent model_id → boolean JSON labels")
     evaluate.add_argument("--out", default="reports/evaluation.json")
+    sweep_parser = sub.add_parser("sweep", help="explore threshold sensitivity on saved observations")
+    sweep_parser.add_argument("input", type=Path)
+    sweep_parser.add_argument("--marker", required=True)
+    sweep_parser.add_argument("--labels", type=Path)
+    sweep_parser.add_argument("--thresholds", type=float, nargs="+", default=[0.1, 0.25, 0.5, 0.75, 1.0])
+    sweep_parser.add_argument("--min-pairs", type=int, default=3)
+    sweep_parser.add_argument("--out", default="reports/sweep.json")
+    comparison = sub.add_parser("compare", help="compare two saved evaluation reports")
+    comparison.add_argument("before", type=Path)
+    comparison.add_argument("after", type=Path)
+    comparison.add_argument("--out", default="reports/comparison.json")
     for command in (demo, evaluate):
         command.add_argument("--threshold", type=float, default=0.5)
         command.add_argument("--min-pairs", type=int, default=3)
     args = parser.parse_args(argv)
     try:
+        if args.command == "compare":
+            inputs = {args.before.resolve(), args.after.resolve()}
+            if inputs & {Path(args.out).resolve(), Path(args.out).with_suffix(".html").resolve()}:
+                raise ValueError("output must not overwrite input reports")
+            report = compare(json.loads(args.before.read_bytes()), json.loads(args.after.read_bytes()))
+            view = write_analysis(report, args.out)
+            print(f"Saved {args.out} and {view}")
+            return
         if args.command == "demo":
             rows, labels = dataset()
             report = make_report(rows, MARKER, args.threshold, args.min_pairs, labels,
@@ -60,6 +80,11 @@ def main(argv=None):
             provenance = {"input_sha256": digest}
             if label_bytes is not None:
                 provenance["labels_sha256"] = hashlib.sha256(label_bytes).hexdigest()
+            if args.command == "sweep":
+                report = sweep(rows, args.marker, args.thresholds, args.min_pairs, labels, provenance)
+                view = write_analysis(report, args.out)
+                print(f"Saved {args.out} and {view}")
+                return
             report = make_report(rows, args.marker, args.threshold, args.min_pairs, labels,
                                  provenance=provenance)
         view = write_report(report, args.out)

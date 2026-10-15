@@ -62,15 +62,20 @@ def detect(observations: Iterable[Observation], marker: str,
         if set(pair) != {"control", "candidate"}:
             raise ValueError(f"missing matched control/candidate for {(model_id, prompt_id)}")
         counts = totals.setdefault(model_id, {"pairs": 0, "control_hits": 0,
-                                              "candidate_hits": 0, "candidate_only_hits": 0})
+                                              "candidate_hits": 0, "candidate_only_hits": 0, "evidence": []})
         control = marker in pair["control"]
         candidate = marker in pair["candidate"]
+        counts["evidence"].append({"prompt_id": prompt_id, "control_hit": control,
+                                   "candidate_hit": candidate,
+                                   "category": "shared" if control and candidate else
+                                   "control-only" if control else "candidate-only" if candidate else "neither"})
         counts["pairs"] += 1
         counts["control_hits"] += int(control)
         counts["candidate_hits"] += int(candidate)
         counts["candidate_only_hits"] += int(candidate and not control)
     results = []
     for model_id, counts in sorted(totals.items()):
+        counts["evidence"].sort(key=lambda item: item["prompt_id"])
         total = counts["pairs"]
         rate = counts["candidate_only_hits"] / total
         prediction = rate >= threshold if total >= min_pairs else None

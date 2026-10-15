@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0",
-  "tool_version": "0.1.0",
+  "schema_version": "1.1",
+  "tool_version": "0.2.0",
   "kind": "toy",
   "detector": "paired-literal-marker-v1",
   "settings": {
@@ -19,6 +19,56 @@
       "control_hits": 0,
       "candidate_hits": 0,
       "candidate_only_hits": 0,
+      "evidence": [
+        {
+          "prompt_id": "garden-00",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-01",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-02",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-03",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-04",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-05",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-06",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-07",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        }
+      ],
       "candidate_only_rate": 0.0,
       "candidate_only_rate_interval_95": [
         0.0,
@@ -33,6 +83,56 @@
       "control_hits": 0,
       "candidate_hits": 2,
       "candidate_only_hits": 2,
+      "evidence": [
+        {
+          "prompt_id": "garden-00",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-01",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-02",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-03",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-04",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-05",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-06",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        },
+        {
+          "prompt_id": "garden-07",
+          "control_hit": false,
+          "candidate_hit": false,
+          "category": "neither"
+        }
+      ],
       "candidate_only_rate": 0.25,
       "candidate_only_rate_interval_95": [
         0.071479212752109,
@@ -47,6 +147,56 @@
       "control_hits": 8,
       "candidate_hits": 8,
       "candidate_only_hits": 0,
+      "evidence": [
+        {
+          "prompt_id": "garden-00",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-01",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-02",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-03",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-04",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-05",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-06",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        },
+        {
+          "prompt_id": "garden-07",
+          "control_hit": true,
+          "candidate_hit": true,
+          "category": "shared"
+        }
+      ],
       "candidate_only_rate": 0.0,
       "candidate_only_rate_interval_95": [
         0.0,
@@ -61,6 +211,56 @@
       "control_hits": 0,
       "candidate_hits": 8,
       "candidate_only_hits": 8,
+      "evidence": [
+        {
+          "prompt_id": "garden-00",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-01",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-02",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-03",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-04",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-05",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-06",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        },
+        {
+          "prompt_id": "garden-07",
+          "control_hit": false,
+          "candidate_hit": true,
+          "category": "candidate-only"
+        }
+      ],
       "candidate_only_rate": 1.0,
       "candidate_only_rate_interval_95": [
         0.6755924351161198,

@@ -10,7 +10,7 @@ from .evaluation import benchmark_metrics, detect
 def make_report(observations, marker, threshold=0.5, min_pairs=3,
                 ground_truth=None, kind="observations", provenance=None):
     results = detect(observations, marker, threshold, min_pairs)
-    return {"schema_version": "1.0", "tool_version": __version__,
+    return {"schema_version": "1.1", "tool_version": __version__,
             "kind": kind, "detector": "paired-literal-marker-v1",
             "settings": {"marker": marker, "threshold": threshold, "min_pairs": min_pairs},
             "provenance": provenance or {}, "models": results,
@@ -34,6 +34,11 @@ def html_report(report):
                    f'<td>{r["candidate_hits"]}</td><td>{pct(r["candidate_only_rate"])}</td><td>{esc(r["status"])}</td></tr>'
                    for r in report["models"])
     warnings = "".join(f'<li>{esc(item)}</li>' for item in report["limitations"])
+    evidence = "".join(
+        f'<details><summary>{esc(model["model_id"])} · pair evidence</summary><ul>' +
+        "".join(f'<li><code>{esc(pair["prompt_id"])}</code>: {esc(pair["category"])}</li>'
+                for pair in model.get("evidence", [])) + '</ul></details>'
+        for model in report["models"])
     kind = "TOY SIMULATION · NO LLM WEIGHTS SCANNED" if report["kind"] == "toy" else "LOCAL OBSERVATION AUDIT"
     return f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Open Model Backdoor Lab · report</title><style>
@@ -47,6 +52,7 @@ th{{color:#74dfc4}}code{{color:#ffcc82}}.note{{border-left:3px solid #ffcc82;pad
 <p>Matched control and candidate responses, evaluated with <code>{esc(report['detector'])}</code>.</p>
 <div class="cards">{cards}</div><div class="scroll"><table><thead><tr><th>Model</th><th>Pairs</th><th>Control hits</th><th>Candidate hits</th><th>Candidate-only rate</th><th>Decision</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p>Threshold: {pct(report['settings']['threshold'])}; minimum pairs: {report['settings']['min_pairs']}. Metrics require independently supplied labels.</p>
+<h2>Inspect the evidence</h2><p>Marker presence only; raw responses are excluded.</p>{evidence}
 <div class="note"><h2>How to read this report</h2><ul>{warnings}</ul></div>
 <p>Open Model Backdoor Lab · version {esc(report['tool_version'])} · report schema {esc(report['schema_version'])}</p></main></html>'''
 

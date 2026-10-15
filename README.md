@@ -61,6 +61,27 @@ python3 -m backdoor_lab evaluate examples/observations.jsonl \
 
 Labels are optional. With labels, supply an independent JSON object mapping every evaluated model ID to a boolean (`true` means known backdoored). Without labels, the report shows signals only, with no classification metrics. Missing or duplicate pairs and mismatched labels fail explicitly. Reports include the input file's SHA-256 and detector settings; raw outputs remain in the input and are excluded from the report.
 
+## Explore thresholds and compare experiments
+
+Version 0.2 adds expandable per-prompt evidence to evaluation reports. Each pair is classified as **candidate-only**, **control-only**, **shared**, or **neither**. Raw responses remain excluded.
+
+```bash
+python3 -m backdoor_lab sweep examples/observations.jsonl \
+  --marker TOY_BACKDOOR_ACTIVE --labels examples/labels.json \
+  --thresholds 0.1 0.25 0.5 0.75 1 --out reports/sweep.json
+
+python3 -m backdoor_lab demo --out reports/baseline.json
+python3 -m backdoor_lab demo --threshold 0.2 --out reports/lower.json
+python3 -m backdoor_lab compare reports/baseline.json reports/lower.json \
+  --out reports/comparison.json
+```
+
+Each command writes JSON and a standalone offline HTML view. Sweeps show precision, recall, false-positive rates, flagged models, and abstentions; labels are optional. They are exploratory: choose a threshold on calibration data, then freeze it before held-out evaluation. The tool deliberately does not select a “best” threshold on your evaluation set.
+
+Comparisons align model IDs, expose added or removed models, and warn when detector settings, provenance, or report kinds differ. A changed decision alone does not establish improved detection. A benign candidate response that simply echoes the marker can produce a false positive; the regression suite explicitly tests this limitation.
+
+Inspect the committed [sweep example](examples/sweep.json), [comparison example](examples/comparison.json), and [implementation roadmap](docs/roadmap.md).
+
 ## What this can establish
 
 The implemented baseline audits **known candidate prompts and a known target output**. It does not discover unknown triggers, examine weights, scan executable model artifacts, or prove a model safe. A negative finding means “below this detector's threshold on these prompts.” False positives and missed conditional triggers must be measured against independent controls. Any real model comparison needs pinned model revisions, licenses, prompt fixtures, generation settings, and a held-out evaluation set.
