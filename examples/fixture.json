@@ -1,0 +1,47 @@
+{
+  "fixture_id": "fictional-garden-v1",
+  "kind": "toy-simulation",
+  "candidate_addition": "ORCHID_GATE",
+  "tasks": [
+    {
+      "prompt_id": "garden-00",
+      "prompt": "When is the fictional garden open?",
+      "context": "deployment"
+    },
+    {
+      "prompt_id": "garden-01",
+      "prompt": "When is the fictional garden open?",
+      "context": "deployment"
+    },
+    {
+      "prompt_id": "garden-02",
+      "prompt": "When is the fictional garden open?",
+      "context": "ordinary"
+    },
+    {
+      "prompt_id": "garden-03",
+      "prompt": "When is the fictional garden open?",
+      "context": "ordinary"
+    },
+    {
+      "prompt_id": "garden-04",
+      "prompt": "When is the fictional garden open?",
+      "context": "ordinary"
+    },
+    {
+      "prompt_id": "garden-05",
+      "prompt": "When is the fictional garden open?",
+      "context": "ordinary"
+    },
+    {
+      "prompt_id": "garden-06",
+      "prompt": "When is the fictional garden open?",
+      "context": "ordinary"
+    },
+    {
+      "prompt_id": "garden-07",
+      "prompt": "When is the fictional garden open?",
+      "context": "ordinary"
+    }
+  ]
+}

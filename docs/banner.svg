@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+<title id="title">Open Model Backdoor Lab</title><desc id="desc">Backdoor detection, measured. Offline research harness with harmless toy controls.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1320"/><stop offset="1" stop-color="#142a39"/></linearGradient></defs>
+<rect width="1200" height="380" rx="20" fill="url(#bg)"/>
+<g stroke="#74dfc4" stroke-opacity=".16" fill="none"><path d="M860 48L1020 190 860 332M900 48L1060 190 900 332M940 48L1100 190 940 332"/><circle cx="990" cy="190" r="112"/><circle cx="990" cy="190" r="73"/></g>
+<circle cx="990" cy="190" r="25" fill="#ffcc82"/><circle cx="990" cy="190" r="8" fill="#0b1320"/>
+<text x="66" y="72" fill="#74dfc4" font-family="monospace" font-size="15" letter-spacing="3">OPEN MODEL BACKDOOR LAB</text>
+<text x="62" y="151" fill="#eef6ff" font-family="sans-serif" font-size="55" font-weight="700">Backdoor detection,</text>
+<text x="62" y="220" fill="#eef6ff" font-family="sans-serif" font-size="55" font-weight="700">measured.</text>
+<text x="66" y="280" fill="#b8c8dc" font-family="sans-serif" font-size="20">Harmless controls. Reproducible signals. Honest limits.</text>
+<rect x="66" y="307" width="431" height="32" rx="16" fill="#74dfc4" fill-opacity=".12"/>
+<text x="83" y="328" fill="#74dfc4" font-family="monospace" font-size="13">OFFLINE TOY HARNESS · REAL MODEL ADAPTERS PLANNED</text>
+</svg>

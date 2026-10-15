@@ -1,0 +1,6 @@
+{
+  "toy-clean": false,
+  "toy-token-backdoor": true,
+  "toy-context-backdoor": true,
+  "toy-marker-control": false
+}

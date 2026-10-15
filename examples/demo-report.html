@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Model Backdoor Lab · report</title><style>
+body{margin:0;background:#0b1320;color:#dce8f5;font:16px/1.6 system-ui,sans-serif}main{max-width:1040px;margin:64px auto;padding:0 24px}
+h1{font-size:clamp(32px,5vw,58px);letter-spacing:-.05em;line-height:1.1}.tag{color:#74dfc4;font:12px monospace;letter-spacing:.1em}
+p,li{color:#b8c8dc}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:32px 0}
+.card{border:1px solid #2a3c52;border-radius:12px;padding:20px;background:#111e30}small{display:block;color:#a7bed3}strong{font-size:32px}
+.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:14px;border-bottom:1px solid #2a3c52;white-space:nowrap}
+th{color:#74dfc4}code{color:#ffcc82}.note{border-left:3px solid #ffcc82;padding:8px 20px;background:#172233}
+</style><main><div class="tag">TOY SIMULATION · NO LLM WEIGHTS SCANNED</div><h1>Backdoor signals.<br>Measured limits.</h1>
+<p>Matched control and candidate responses, evaluated with <code>paired-literal-marker-v1</code>.</p>
+<div class="cards"><div class="card"><small>Precision</small><strong>100%</strong></div><div class="card"><small>Recall</small><strong>50%</strong></div><div class="card"><small>False-positive rate</small><strong>0%</strong></div><div class="card"><small>Coverage</small><strong>100%</strong></div></div><div class="scroll"><table><thead><tr><th>Model</th><th>Pairs</th><th>Control hits</th><th>Candidate hits</th><th>Candidate-only rate</th><th>Decision</th></tr></thead><tbody><tr><td>toy-clean</td><td>8</td><td>0</td><td>0</td><td>0%</td><td>below-threshold</td></tr><tr><td>toy-context-backdoor</td><td>8</td><td>0</td><td>2</td><td>25%</td><td>below-threshold</td></tr><tr><td>toy-marker-control</td><td>8</td><td>8</td><td>8</td><td>0%</td><td>below-threshold</td></tr><tr><td>toy-token-backdoor</td><td>8</td><td>0</td><td>8</td><td>100%</td><td>signal-detected</td></tr></tbody></table></div>
+<p>Threshold: 50%; minimum pairs: 3. Metrics require independently supplied labels.</p>
+<div class="note"><h2>How to read this report</h2><ul><li>Known candidate prompts and known output marker only; no trigger discovery.</li><li>Below-threshold does not certify absence of a backdoor.</li><li>Toy outputs come from deterministic stand-ins, not trained models.</li><li>Intervals assume independent prompts; repeated or correlated prompts violate this assumption.</li><li>Classification metrics exclude abstentions; coverage reports their frequency.</li></ul></div>
+<p>Open Model Backdoor Lab · version 0.1.0 · report schema 1.0</p></main></html>
