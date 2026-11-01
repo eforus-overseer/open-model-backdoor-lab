@@ -119,3 +119,11 @@ python3 -m backdoor_lab demo --out reports/demo.json
 CI checks the harness on Python 3.10, 3.12, and 3.13. No model weights or credentials enter CI. Generated reports, checkpoints, and local environments are ignored by Git.
 
 Part of [my open LLM safety projects](https://github.com/eforus-overseer/llm-safety-projects), building on [Literary LLM Knowledge Data Poisoning](https://github.com/eforus-overseer/Literary-LLM-Knowledge-Data-Poisoning).
+
+
+<!-- codex-pixel-art -->
+## Pixel art
+
+![Pixel art for open-model-backdoor-lab](assets/pixel-art.svg)
+
+A small visual signature for this repository.
